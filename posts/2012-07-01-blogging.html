@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Blogging - the tech bits</title>
+    <meta name="author" content="Andres">
+    <meta name="description" content="Getting a blog started, the hacker way">
+    <meta name="keywords" content="blogging, programming, productivity, git, haskell, hakyll">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"></meta>
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="all" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../css/syntax.css">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.ico">
+  </head>
+
+  <body class="post">
+    <div class="mobile column hidden" id="mobile">
+      <a href="../"><img src="../images/topleft.png"></img></a>
+      <div id="htmltagcloud">
+        
+      </div>
+    </div>
+    <header class="home">
+      <h1><a href="../" title="back to post overview"></a></h1>
+      <div id="htmltagcloud">
+        
+      </div>
+    </header>
+    <div class="container">
+    <article>
+  <header>
+    <p class="meta"><time class="timeago" datetime="2012-07-01" pubdate>2012-07-01</time>, tagged <a href="../tags/meta.html">meta</a>, <a href="../tags/haskell.html">haskell</a>, <a href="../tags/hakyll.html">hakyll</a>.</p>
+    <h1>Blogging - the tech bits</h1>
+    </header>
+  <section>
+    <p>As you’re looking at it right now, you have probably already figured out that I started a blog. Yes, another one. Anything that needs to be has not been said out, and probably never will be. This is the <q>’how</q>’.</p>
+<p>The requirments for the blogging platform were roughly the following:</p>
+<ul>
+<li>Ability to add equations, code, javascript and own HTML in general. This rules out <a href="http://www.blogger.com/">Blogger</a> and free hosted <a href="https://wordpress.com/">Wordpress</a>.</li>
+<li>Easy to use: I want to write my posts in <a href="http://www.vim.org/">Vim</a> and use a markup language for that. I want to put my posts and templates under <a href="http://betterexplained.com/articles/a-visual-guide-to-version-control/">version control</a>. I want to see the exact result before publishing it.</li>
+<li>Free as in beer. There are some free dynamic hosting providers, but I’ve never heard of throughly positive experiences with them. Therefore, my blog will be static.</li>
+<li>Understandable - no thousands of lines of magical, fragile code.</li>
+</ul>
+<p>After looking at several static site generators, I picked <a href="http://jaspervdj.be/hakyll/">Hakyll</a>. The choice was almost arbitrary and based on more intuition than research. Previous good experiences with similar configuration system (full-featured <a href="http://www.haskell.org/haskellwiki/Haskell">Haskell</a> code) used by <a href="http://xmonad.org/">Xmonad</a> (a great window manager) probably broke the tie.</p>
+<p>The current configuration is a mix of <a href="http://jaspervdj.be/hakyll/">Hakyll</a>-powered pages I liked, including <a href="http://blog.coldflake.com/">coldflake</a>, <a href="https://www.wunki.org/">wunki</a>, <a href="http://blog.wuzzeb.org/">wuzzweb</a> and Hakyll examples. The header font is <a href="http://www.ndiscovered.com/index.php/exo-font-family">Exo</a> from <a href="https://www.google.com/webfonts/">Google Web Fonts</a>, equations are rendered using <a href="http://www.mathjax.org/">MathJax</a>. The comments are powered by <a href="http://disqus.com/">Disqus</a>. Thanks to all who made it work.</p>
+<p>As a note to anyone who is planning to use <a href="http://jaspervdj.be/hakyll/">Hakyll</a> with <a href="http://pages.github.com/">Github Pages</a>, you probably want two separate repositories: one for the source code and other for the <code>_site</code> directory.</p>
+<p>\(\gamma = \frac{1}{ \sqrt{1 - { \beta^2}}}\) where \(\beta = v/c\)</p>
+  </section>
+</article>
+
+
+<hr></hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var discus_title = 'Blogging - the tech bits';
+    var disqus_shortname = 'andres-pq';
+    var discus_identifier = '/posts/2012-07-01-blogging.html';
+    var disqus_url = 'http://p-q.github.com/posts/2012-07-01-blogging.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript><p>The comments use <a href="http://disqus.com/?ref_noscript">Disqus</a>,
+which requires Javascript.  I use the Firefox Noscript extension too: you will
+need to enable wuzzeb.org and discus.com</p></noscript>
+
+    <footer>
+      <p><a href="../about.html" title="About">About</a>
+       · <a href="../rss.xml" title="Feed">RSS</a>
+       · <a href="mailto:pq@lavabit.com" title="Send me an email">Email</a>
+       · <a href="https://github.com/p-q/pqblog" title="Source code of the blog">Source</a>
+      </p>
+    </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.timeago.js"></script>
+    <script type="text/javascript" src="../js/blog.ui.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>
