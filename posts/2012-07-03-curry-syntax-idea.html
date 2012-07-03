@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Idea: Haskell syntax for partial application in any argument</title>
+    <meta name="author" content="Andres">
+    <meta name="description" content="Currying rocks, `flip` helps, but what about the other arguments?">
+    <meta name="keywords" content="blogging, programming, productivity, git, haskell, hakyll">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"></meta>
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="all" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../css/syntax.css">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.ico">
+  </head>
+
+  <body class="post">
+    <div class="mobile column hidden" id="mobile">
+      <a href="../"><img src="../images/topleft.png"></img></a>
+      <div id="htmltagcloud">
+        
+      </div>
+    </div>
+    <header class="home">
+      <h1><a href="../" title="back to post overview"></a></h1>
+      <div id="htmltagcloud">
+        
+      </div>
+    </header>
+    <div class="container">
+    <article>
+  <header>
+    <p class="meta"><time class="timeago" datetime="2012-07-03" pubdate>2012-07-03</time>, tagged <a href="../tags/haskell.html">haskell</a>, <a href="../tags/syntax.html">syntax</a>.</p>
+    <h1>Idea: Haskell syntax for partial application in any argument</h1>
+    </header>
+  <section>
+    <p>Let <code>f</code> applied to <code>@</code> (and some other arguments) denote partial application of <code>f</code> that still needs the argument replaced by <code>@</code>.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()
+f <span class="fu">@</span> <span class="fl">0.5</span> <span class="fu">@</span><span class="ot">  ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()
+f <span class="fu">@</span> <span class="fl">0.5</span> <span class="st">&quot;&quot;</span><span class="ot"> ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</code></pre>
+<p>Currying rocks. <code>(2^) ´map´ [1..16]</code> is a great example. Let’s do away with the boilerprate, finally. A similar syntax is (rarely?) used in mathemathics with \(\cdot\) instead of <code>@</code> for obvious reasons. <code>.</code> is used for function composition in haskell, so I (arbitrarily) picked <code>@</code> for this post. It’s already used in patterns and thus cannot be used as an identifier, but as far as I see there would be no conflict. There are however some ambiguities that need to be resolved. My best bet is the following:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">f <span class="fu">@</span> <span class="fu">=</span> f
+(f <span class="fu">@</span>) <span class="fu">=</span> f
+((((f <span class="fu">@</span>) <span class="fu">@</span>) <span class="fu">@</span>) <span class="fu">@</span>) <span class="fu">=</span> f
+(f <span class="fu">@</span>) x <span class="fu">=</span> f x <span class="fu">!=</span> f <span class="fu">@</span> x</code></pre>
+<p>The last inequality is bothering, but it does not ruin the idea for me (at least if compilers don’t assume the inverse for some reason). Is there any chance for this to be implemented?</p>
+  </section>
+</article>
+
+
+<hr></hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var discus_title = 'Idea: Haskell syntax for partial application in any argument';
+    var disqus_shortname = 'andres-pq';
+    var discus_identifier = '/posts/2012-07-03-curry-syntax-idea.html';
+    var disqus_url = 'http://p-q.github.com/posts/2012-07-03-curry-syntax-idea.html';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript><p>The comments use <a href="http://disqus.com/?ref_noscript">Disqus</a>,
+which requires Javascript.  I use the Firefox Noscript extension too: you will
+need to enable wuzzeb.org and discus.com</p></noscript>
+
+    <footer>
+      <p><a href="../about.html" title="About">About</a>
+       · <a href="../rss.xml" title="Feed">RSS</a>
+       · <a href="mailto:pq@lavabit.com" title="Send me an email">Email</a>
+       · <a href="https://github.com/p-q/p-q" title="Source code of the blog">Source</a>
+      </p>
+    </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.timeago.js"></script>
+    <script type="text/javascript" src="../js/blog.ui.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>
