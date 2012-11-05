@@ -10,49 +10,94 @@
         <item>
     <title>Blogging - the tech bits</title>
     <link>http://p-q.github.com/posts/2012-07-01-blogging.html</link>
-    <description><![CDATA[Getting a blog started, the hacker way]]></description>
+    <description><![CDATA[<p>As you’re looking at it right now, you have probably already figured out that I started a blog. Yes, another one. Anything that needs to be has not been said out, and probably never will be. This is the <q>’how</q>’.</p>
+<p>The requirments for the blogging platform were roughly the following:</p>
+<ul>
+<li>Ability to add equations, code, javascript and own HTML in general. This rules out <a href="http://www.blogger.com/">Blogger</a> and free hosted <a href="https://wordpress.com/">Wordpress</a>.</li>
+<li>Easy to use: I want to write my posts in <a href="http://www.vim.org/">Vim</a> and use a markup language for that. I want to put my posts and templates under <a href="http://betterexplained.com/articles/a-visual-guide-to-version-control/">version control</a>. I want to see the exact result before publishing it.</li>
+<li>Free as in beer. There are some free dynamic hosting providers, but I’ve never heard of throughly positive experiences with them. Therefore, my blog will be static.</li>
+<li>Understandable - no thousands of lines of magical, fragile code.</li>
+</ul>
+<p>After looking at several static site generators, I picked <a href="http://jaspervdj.be/hakyll/">Hakyll</a>. The choice was almost arbitrary and based on more intuition than research. Previous good experiences with similar configuration system (full-featured <a href="http://www.haskell.org/haskellwiki/Haskell">Haskell</a> code) used by <a href="http://xmonad.org/">Xmonad</a> (a great window manager) probably broke the tie.</p>
+<p>The current configuration is a mix of <a href="http://jaspervdj.be/hakyll/">Hakyll</a>-powered pages I liked, including <a href="http://blog.coldflake.com/">coldflake</a>, <a href="https://www.wunki.org/">wunki</a>, <a href="http://blog.wuzzeb.org/">wuzzweb</a> and Hakyll examples. The header font is <a href="http://www.ndiscovered.com/index.php/exo-font-family">Exo</a> from <a href="https://www.google.com/webfonts/">Google Web Fonts</a>, equations are rendered using <a href="http://www.mathjax.org/">MathJax</a>. The comments are powered by <a href="http://disqus.com/">Disqus</a>. Thanks to all who made it work.</p>
+<p>As a note to anyone who is planning to use <a href="http://jaspervdj.be/hakyll/">Hakyll</a> with <a href="http://pages.github.com/">Github Pages</a>, you probably want two separate repositories: one for the source code and other for the <code>_site</code> directory.</p>
+<p>\(\gamma = \frac{1}{ \sqrt{1 - { \beta^2}}}\) where \(\beta = v/c\)</p>]]></description>
     <pubDate>Sun, 01 Jul 2012 00:00:00 UT</pubDate>
     <guid>http://p-q.github.com/posts/2012-07-01-blogging.html</guid>
 </item>
 <item>
     <title>Idea: Haskell syntax for partial application in any argument</title>
     <link>http://p-q.github.com/posts/2012-07-03-curry-syntax-idea.html</link>
-    <description><![CDATA[Currying rocks, `flip` helps, but what about the other arguments?]]></description>
+    <description><![CDATA[<p>Let <code>f</code> applied to <code>@</code> (and some other arguments) denote partial application of <code>f</code> that still needs the argument replaced by <code>@</code>.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()
+f <span class="fu">@</span> <span class="fl">0.5</span> <span class="fu">@</span><span class="ot">  ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()
+f <span class="fu">@</span> <span class="fl">0.5</span> <span class="st">&quot;&quot;</span><span class="ot"> ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</code></pre>
+<p>Currying rocks. <code>(2^) ´map´ [1..16]</code> is a great example. Let’s do away with the boilerprate, finally. A similar syntax is (rarely?) used in mathemathics with \(\cdot\) instead of <code>@</code> for obvious reasons. <code>.</code> is used for function composition in haskell, so I (arbitrarily) picked <code>@</code> for this post. It’s already used in patterns and thus cannot be used as an identifier, but as far as I see there would be no conflict. There are however some ambiguities that need to be resolved. My best bet is the following:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">f <span class="fu">@</span> <span class="fu">=</span> f
+(f <span class="fu">@</span>) <span class="fu">=</span> f
+((((f <span class="fu">@</span>) <span class="fu">@</span>) <span class="fu">@</span>) <span class="fu">@</span>) <span class="fu">=</span> f
+(f <span class="fu">@</span>) x <span class="fu">=</span> f x <span class="fu">!=</span> f <span class="fu">@</span> x</code></pre>
+<p>The last inequality is bothering, but it does not ruin the idea for me (at least if compilers don’t assume the inverse for some reason). Is there any chance for this to be implemented?</p>]]></description>
     <pubDate>Tue, 03 Jul 2012 00:00:00 UT</pubDate>
     <guid>http://p-q.github.com/posts/2012-07-03-curry-syntax-idea.html</guid>
 </item>
 <item>
     <title>cjdns mesh routing engine</title>
     <link>http://p-q.github.com/posts/2012-07-14-cjdns.html</link>
-    <description><![CDATA[Secure mesh networking.]]></description>
+    <description><![CDATA[<section class="information rightinfo">
+<h3 id="cjdns"><a href="#TOC">cjdns</a></h3>
+<p>cjdns is a routing engine designed for security, scalability, speed and ease of use. The dream: […] give it an interface which connects another node and it gives you an ipv6 address generated from a <a href="https://en.wikipedia.org/wiki/Public_key">public encryption key</a> and a virtual network card (TUN device) which you can use to send packets to anyone in the cjdns network to which you are connected. <a href="http://cjdns.info/">cjdns.info</a> </section></p>
+<blockquote>
+<p>We’re not trying to replace <a href="https://www.torproject.org/index.html.en">TOR</a>, we are trying to replace the Internet. ~ Caleb James DeLisle</p>
+</blockquote>
+<p>There is a great introductory video at <a href="https://projectmeshnet.org/">projectmeshnet.org</a> and a more detailed interview with the author by slashRoot is available on <a href="http://www.youtube.com/watch?v=zINQYkl01N8">Youtube</a>. A <a href="https://github.com/cjdelisle/cjdns/blob/master/rfcs/Whitepaper.md">RFC-stile overview</a> can be found in the <a href="https://github.com/cjdelisle/cjdns/">projects github repo</a>.</p>
+<p>I am usually <a href="https://xkcd.com/675/">revolutionary</a> towards ambitious projects, but this seems very real. Routing itself is visibly fast, and the switching part could even by run on a GPU as noted in the interview. Encryption is enabled by default when a packet is to be routed be a third party and authenticated encryption is possible. I’d prefer even more aggressive defaults, but it’s still way better than plaintext communication practiced today.</p>
+<p>I will look into scalability after Ipho and am currently too uncertain to come up with any estimates, but it should perform way better than <a href="http://www.olsr.org/">OLSR</a> or <a href="https://en.wikipedia.org/wiki/B.A.T.M.A.N%2E">B.A.T.M.A.N.</a> and does not suffer from (theoretical) excessive routing table updates after network changes for address-space balancing like <a href="https://savannah.nongnu.org/projects/netsukuku/">netsukuku</a> or my homegrown design. They say it <a href="https://github.com/cjdelisle/cjdns/issues/104">scales well</a> though ;).</p>]]></description>
     <pubDate>Sat, 14 Jul 2012 00:00:00 UT</pubDate>
     <guid>http://p-q.github.com/posts/2012-07-14-cjdns.html</guid>
 </item>
 <item>
     <title>Instant messaging woes</title>
     <link>http://p-q.github.com/posts/2012-08-04-instant-messaging-woes.html</link>
-    <description><![CDATA[MSN sucks.]]></description>
+    <description><![CDATA[<p>MSN sucks. It arbitrarily blocks my contacts. After adding a new contact there is a reasonably high chance that the contact will appear offline for me for the time being. Offline messages work only occasionally. Packet loss that does not affect SSH, VPN or <a href="http://www.jabber.org/">Jabber</a> connections makes MSN server drop the connection to me. Group chat hasn’t worked since november 2011. There is (was?) a hard limit on how many contacts you are allowed to have.</p>
+<p>All of those issues have been confirmed at with least two of the following clients: Pidgin, Empathy, Mercury, imo.im and Ebuddy. Most of them are bugs in the respective clients, but all of it is caused by the simple fact that Microsoft does not like users having their way with their communication. Using the officially supported client is not an option, as it requires using a propertiary, adversarial and utterly limited operating system.</p>
+<p>Unless a magical fix appears for these problems, I’m leaving MSN by the end of 2012.</p>
+<p><a href="http://www.jabber.org/">Jabber</a> is better, but not painless. Most public servers are overwhelmed by the amount of clients and DoS attacks. Google accounts also double as Jabber accounts and seem to work well, but every bit of your conversations is logged in Google servers. The actual problem seems again to be the protocol itself, this time being too complex too be implemented efficiently. In spite of this, Jabber is usually very reliable and useful means of communication and free of all the problems I’m experiencing with MSN.</p>
+<p>There are improvements in the works, of course. <a href="http://about.psyc.eu/">PSYC</a> is lightwieght enough to mitigate the scalabality hassles of Jabber and <a href="http://secushare.org/">Secure Share</a> looks promising as a platform for communication facilities to come. What else is worth taking a look at?</p>]]></description>
     <pubDate>Sat, 04 Aug 2012 00:00:00 UT</pubDate>
     <guid>http://p-q.github.com/posts/2012-08-04-instant-messaging-woes.html</guid>
 </item>
 <item>
     <title>"Security" at olympiads</title>
     <link>http://p-q.github.com/posts/2012-08-25-olympiad-security.html</link>
-    <description><![CDATA[A lot of fuss for more fuss]]></description>
+    <description><![CDATA[<blockquote>
+<p>Mobile phones and laptops being collected by the organisers. – IPhO 2012 <q>’<a href="http://www.ipho2012.ee/students/">Program for student</a></q>’</p>
+</blockquote>
+<p>In addition to that, all competitors had to pass an airport-like security check before entering the contest hall.</p>
+<p>I was there. The <q>’security</q>’, originally meant to protect the academic integrity of results, was, of course, useless and also not surprisingly a pain in the ass. Sadly, IPhO 2012 is just an example, the attitude ranted about in this post is far more common.</p>
+<p>To let competitors solve tasks in their native language, the leaders were to translate them the night before the examination. Each group of four students from the same country was appointed a guide who was supposed to look after them, keep them in line of sight at all times and make sure they do not communicate with anybody else. Students were separated from team leaders and observers during the second day and accomodated in a different city. The reasoning behind this is to avoid teachers tipping off students about the tasks to come. To the same and, all electronics, even those clearly useless for communicating, were to be confiscated.</p>
+<p>This rendered all students dependent on their guides and the organizers in general – in a foreign country without any means to reach their peers. In addition to the obvious discomforts caused to competitors, it amplified several vacancies in the actions of the organizers. There were cases when people went out to jog, smoke, or just to take walk and were looked for by numerous guides thinking how lost one might be. There were legitimate and urgent topics to be discussed between students and their teachers. More than a hundred people spent a night worrying about problems created by other regulations that could have been significantly mitigated by clear communication, possibly with their own teachers.</p>
+<p>And what did we actually get out of it? Students were <em>asked</em> to give their electronics away, anyone could have kept a cellphone just by saying that they don’t have one with them. <strong>If one had decided to cheat before the electronics were confiscated, that would have been easy</strong>. In addition to that, some students /did/ talk on the phone to the teachers during the guarantine. In their native language. There was a guide present (the owner of the phone) but the chance of him understanding anything at all of the conversation was negilible. And if inventing an excuse to get to use a guide’s phone would have sounded too difficult, one could just have walked to the shopping centre across the road and asked people for directions to the nearest internet access point. <strong>Contacting the leaders was made less convenient, but not less possible</strong>. If one would have wanted to ask their leader about the tasks, it would have been possible with relatively small effort. Confiscating electronics is useless.</p>
+<p>Security checks before entering the examination hall were less disturbing but even easier to prove useless. I did not manage to confirm it first-hand, but the rumor says that one of the organizers themselves took on the security check on his own and sneaked in with an axe, two cellphones and Suspicious Pieces Of Paper. Even if it did not actually happen, there was nothing that could have prevented it. <strong>The only thing keeping students from cheating was their own honesty</strong>.</p>
+<p>The experimental examination took part in two groups, because there was not enough equipment for all students at once. While the first group was taking the exam, the second group was confined in a science adventure park. People slept on chairs and floors, studied for the competition and someone even managed to get her hands on some dry ice to play tricks with. Wouldn’t it have been saner and easier to confine those who know the tasks (because they are solving them and therefore already in one room with a good reason to be there) and let those who don’t know have their way?</p>
+<p>If somebody wants to cheat, they can. Preventing it may not be impossible, but it most likely isn’t worth it. Just stacking up random <q>’security</q>’ measures only makes everything more complicated, especially for the honest. It should not come as a surprise that people do not like being restrained from communicating with the outside world or having their possessions taken away, even temporarily.</p>]]></description>
     <pubDate>Sat, 25 Aug 2012 00:00:00 UT</pubDate>
     <guid>http://p-q.github.com/posts/2012-08-25-olympiad-security.html</guid>
 </item>
 <item>
     <title>Control</title>
     <link>http://p-q.github.com/posts/2012-09-22-control.html</link>
-    <description><![CDATA[$description$]]></description>
+    <description><![CDATA[<p>We are both control freaks, aren’t we? We both want to control my life. There is, however, a subtle but vast difference because of which I believe myself to be infinitely more fit for that position than anybody else. I am me and you are not.</p>
+<p><sub> I got the impulse to publish this view of mine after reading <a href="http://falkvinge.net/2012/07/12/in-the-uk-you-will-go-to-jail-not-just-for-encryption-but-for-astronomical-noise-too/">Falkvinge’s post on UK crypto law</a>. </sub></p>]]></description>
     <pubDate>Sat, 22 Sep 2012 00:00:00 UT</pubDate>
     <guid>http://p-q.github.com/posts/2012-09-22-control.html</guid>
 </item>
 <item>
     <title>Why claim your privacy even if you don't need it</title>
     <link>http://p-q.github.com/posts/2012-09-22-reason-for-seeking-privacy.html</link>
-    <description><![CDATA[$description$]]></description>
+    <description><![CDATA[<p>Quite often when I advise people to take their privacy more seriously, they respond that they have nothing to hide and therefore don’t need it. Even though this statement can be valid in some cases, immediate personal need isn’t the main reason to stand up for your privacy. <strong>By protecting your right to privacy, you send a message that it is okay to do so and strengthen the relevant infrastructure.</strong> A critical mass of privacy-aware citizens is needed to prevent practices that abolish people’s rights from getting accepted as normal and mandatory.</p>
+<p>There are people who do need every bit of privacy they can get. The least controversial examples I can come up with right now are doctors and lawyers. Even more importantly, anyone working with critical infrastructure needs privacy — this is where identity threft could cause most damage.</p>
+<p>The need for privacy is in my opinion not fundamental, but nevertheless next to inevitable. The point isn’t to keep some details secret, but to prevent the harm that one knowing these details could cause. For example, as many companies (banks, ISP-s, insurers) authenticate their clients over the phone by asking for their (equivelent of) social security numbers, I would prefer to keep mine private to avoid unpleasant surprises. Sadly, this is impossible because the numbers are not considered personal information.</p>]]></description>
     <pubDate>Sat, 22 Sep 2012 00:00:00 UT</pubDate>
     <guid>http://p-q.github.com/posts/2012-09-22-reason-for-seeking-privacy.html</guid>
 </item>

@@ -4,8 +4,19 @@
     <meta charset="utf-8">
     <title>Blogging - the tech bits</title>
     <meta name="author" content="Andres">
-    <meta name="description" content="Getting a blog started, the hacker way">
-    <meta name="keywords" content="blogging, programming, productivity, git, haskell, hakyll">
+    <meta name="description" content="&lt;p&gt;As you’re looking at it right now, you have probably already figured out that I started a blog. Yes, another one. Anything that needs to be has not been said out, and probably never will be. This is the &lt;q&gt;’how&lt;/q&gt;’.&lt;/p&gt;
+&lt;p&gt;The requirments for the blogging platform were roughly the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to add equations, code, javascript and own HTML in general. This rules out &lt;a href=" http: www.blogger.com ">Blogger</a> and free hosted <a href="https://wordpress.com/">Wordpress</a>.</li>
+<li>Easy to use: I want to write my posts in <a href="http://www.vim.org/">Vim</a> and use a markup language for that. I want to put my posts and templates under <a href="http://betterexplained.com/articles/a-visual-guide-to-version-control/">version control</a>. I want to see the exact result before publishing it.</li>
+<li>Free as in beer. There are some free dynamic hosting providers, but I’ve never heard of throughly positive experiences with them. Therefore, my blog will be static.</li>
+<li>Understandable - no thousands of lines of magical, fragile code.</li>
+</ul>
+<p>After looking at several static site generators, I picked <a href="http://jaspervdj.be/hakyll/">Hakyll</a>. The choice was almost arbitrary and based on more intuition than research. Previous good experiences with similar configuration system (full-featured <a href="http://www.haskell.org/haskellwiki/Haskell">Haskell</a> code) used by <a href="http://xmonad.org/">Xmonad</a> (a great window manager) probably broke the tie.</p>
+<p>The current configuration is a mix of <a href="http://jaspervdj.be/hakyll/">Hakyll</a>-powered pages I liked, including <a href="http://blog.coldflake.com/">coldflake</a>, <a href="https://www.wunki.org/">wunki</a>, <a href="http://blog.wuzzeb.org/">wuzzweb</a> and Hakyll examples. The header font is <a href="http://www.ndiscovered.com/index.php/exo-font-family">Exo</a> from <a href="https://www.google.com/webfonts/">Google Web Fonts</a>, equations are rendered using <a href="http://www.mathjax.org/">MathJax</a>. The comments are powered by <a href="http://disqus.com/">Disqus</a>. Thanks to all who made it work.</p>
+<p>As a note to anyone who is planning to use <a href="http://jaspervdj.be/hakyll/">Hakyll</a> with <a href="http://pages.github.com/">Github Pages</a>, you probably want two separate repositories: one for the source code and other for the <code>_site</code> directory.</p>
+<p>\(\gamma = \frac{1}{ \sqrt{1 - { \beta^2}}}\) where \(\beta = v/c\)</p>&quot;&gt;
+    <meta name="keywords" content="programming, haskell, linux, freedom">
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"></meta>
     <!--[if lt IE 9]>
     <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>

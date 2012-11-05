@@ -4,8 +4,17 @@
     <meta charset="utf-8">
     <title>Idea: Haskell syntax for partial application in any argument</title>
     <meta name="author" content="Andres">
-    <meta name="description" content="Currying rocks, `flip` helps, but what about the other arguments?">
-    <meta name="keywords" content="blogging, programming, productivity, git, haskell, hakyll">
+    <meta name="description" content="&lt;p&gt;Let &lt;code&gt;f&lt;/code&gt; applied to &lt;code&gt;@&lt;/code&gt; (and some other arguments) denote partial application of &lt;code&gt;f&lt;/code&gt; that still needs the argument replaced by &lt;code&gt;@&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=" sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()
+f <span class="fu">@</span> <span class="fl">0.5</span> <span class="fu">@</span><span class="ot">  ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()
+f <span class="fu">@</span> <span class="fl">0.5</span> <span class="st">&quot;&quot;</span><span class="ot"> ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</code></pre>
+<p>Currying rocks. <code>(2^) ´map´ [1..16]</code> is a great example. Let’s do away with the boilerprate, finally. A similar syntax is (rarely?) used in mathemathics with \(\cdot\) instead of <code>@</code> for obvious reasons. <code>.</code> is used for function composition in haskell, so I (arbitrarily) picked <code>@</code> for this post. It’s already used in patterns and thus cannot be used as an identifier, but as far as I see there would be no conflict. There are however some ambiguities that need to be resolved. My best bet is the following:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">f <span class="fu">@</span> <span class="fu">=</span> f
+(f <span class="fu">@</span>) <span class="fu">=</span> f
+((((f <span class="fu">@</span>) <span class="fu">@</span>) <span class="fu">@</span>) <span class="fu">@</span>) <span class="fu">=</span> f
+(f <span class="fu">@</span>) x <span class="fu">=</span> f x <span class="fu">!=</span> f <span class="fu">@</span> x</code></pre>
+<p>The last inequality is bothering, but it does not ruin the idea for me (at least if compilers don’t assume the inverse for some reason). Is there any chance for this to be implemented?</p>&quot;&gt;
+    <meta name="keywords" content="programming, haskell, linux, freedom">
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"></meta>
     <!--[if lt IE 9]>
     <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>

@@ -4,8 +4,16 @@
     <meta charset="utf-8">
     <title>cjdns mesh routing engine</title>
     <meta name="author" content="Andres">
-    <meta name="description" content="Secure mesh networking.">
-    <meta name="keywords" content="$keywords$">
+    <meta name="description" content="&lt;section class=" information rightinfo">
+<h3 id="cjdns"><a href="#TOC">cjdns</a></h3>
+<p>cjdns is a routing engine designed for security, scalability, speed and ease of use. The dream: […] give it an interface which connects another node and it gives you an ipv6 address generated from a <a href="https://en.wikipedia.org/wiki/Public_key">public encryption key</a> and a virtual network card (TUN device) which you can use to send packets to anyone in the cjdns network to which you are connected. <a href="http://cjdns.info/">cjdns.info</a> </section></p>
+<blockquote>
+<p>We’re not trying to replace <a href="https://www.torproject.org/index.html.en">TOR</a>, we are trying to replace the Internet. ~ Caleb James DeLisle</p>
+</blockquote>
+<p>There is a great introductory video at <a href="https://projectmeshnet.org/">projectmeshnet.org</a> and a more detailed interview with the author by slashRoot is available on <a href="http://www.youtube.com/watch?v=zINQYkl01N8">Youtube</a>. A <a href="https://github.com/cjdelisle/cjdns/blob/master/rfcs/Whitepaper.md">RFC-stile overview</a> can be found in the <a href="https://github.com/cjdelisle/cjdns/">projects github repo</a>.</p>
+<p>I am usually <a href="https://xkcd.com/675/">revolutionary</a> towards ambitious projects, but this seems very real. Routing itself is visibly fast, and the switching part could even by run on a GPU as noted in the interview. Encryption is enabled by default when a packet is to be routed be a third party and authenticated encryption is possible. I’d prefer even more aggressive defaults, but it’s still way better than plaintext communication practiced today.</p>
+<p>I will look into scalability after Ipho and am currently too uncertain to come up with any estimates, but it should perform way better than <a href="http://www.olsr.org/">OLSR</a> or <a href="https://en.wikipedia.org/wiki/B.A.T.M.A.N%2E">B.A.T.M.A.N.</a> and does not suffer from (theoretical) excessive routing table updates after network changes for address-space balancing like <a href="https://savannah.nongnu.org/projects/netsukuku/">netsukuku</a> or my homegrown design. They say it <a href="https://github.com/cjdelisle/cjdns/issues/104">scales well</a> though ;).</p>&quot;&gt;
+    <meta name="keywords" content="programming, haskell, linux, freedom">
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"></meta>
     <!--[if lt IE 9]>
     <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
